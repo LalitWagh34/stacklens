@@ -6,9 +6,9 @@
   "dev": "next dev",
   "build": "next build",
   "start": "next start",
-  "lint": "next lint --dir src",
+  "lint": "eslint src --ext .ts,.tsx",
   "test": "echo \"No tests yet\" && exit 0"
-  },
+},
   "dependencies": {
     "@supabase/supabase-js": "^2.105.3",
     "class-variance-authority": "^0.7.1",
@@ -29,7 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.2.5",
     "tailwindcss": "^4",
     "typescript": "^5"
