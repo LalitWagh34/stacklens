@@ -188,13 +188,21 @@ function auditTool(
 
   // --- API tools ---
   if (tool === 'anthropic-api' || tool === 'openai-api') {
-    if (monthlySpend > 500) {
+    if (monthlySpend > 100) {
       return {
         action: 'optimize',
         description: 'High API spend detected — credits could save you money',
         monthlySavings: Math.round(monthlySpend * 0.2),
         reason: `At $${monthlySpend}/mo in API costs, buying discounted credits through Credex could save ~20% or $${Math.round(monthlySpend * 0.2)}/mo.`,
       }
+    }
+  }
+    if (officialPrice > 0 && monthlySpend > officialPrice * 1.15) {
+    return {
+      action: 'optimize',
+      description: 'You may be overpaying vs official pricing',
+      monthlySavings: Math.round(monthlySpend - officialPrice),
+      reason: `Official ${tool} ${plan} pricing is $${officialPrice}/mo for ${seats} seat(s). You entered $${monthlySpend} — verify your billing or check for unused seats.`,
     }
   }
 
