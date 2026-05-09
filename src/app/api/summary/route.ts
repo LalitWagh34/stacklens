@@ -40,7 +40,7 @@ Write a concise, specific, professional summary. Mention the biggest saving oppo
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama3-8b-8192',
+      model: 'llama-3.3-70b-versatile',
       max_tokens: 150,
       temperature: 0.7,
     })

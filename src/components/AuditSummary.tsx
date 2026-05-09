@@ -21,14 +21,14 @@ export default function AuditSummary({ auditData }: Props) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             input: {
-              tools: auditData.tools,
-              teamSize: auditData.team_size,
-              useCase: auditData.use_case,
+                tools: auditData.tools,
+                teamSize: auditData.team_size,
+                useCase: auditData.use_case,
             },
             results: auditData.results,
             totalMonthlySavings: auditData.total_monthly_savings,
             totalAnnualSavings: auditData.total_annual_savings,
-          }),
+            }),
         })
         const data = await res.json()
         setSummary(data.summary)
