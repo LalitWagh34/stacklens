@@ -33,3 +33,19 @@ API route was returning 404 intermittently — turned out the dev server was run
 
 **Plan for tomorrow:**
 Add AI-generated personalized summary using Groq API with graceful fallback, set up transactional email with Resend, write 5+ audit engine tests, and deploy to Vercel.
+
+## Day 3 — 2026-05-09
+
+**Hours worked:** 7
+
+**What I did:**
+Fixed CI lint errors — disabled the react-hooks/set-state-in-effect rule for localStorage hydration and removed unused PLAN_MIN_SEATS import. Added AI-generated personalized summary using Groq API (llama-3.3-70b-versatile) with graceful fallback to templated summary. Had to switch models mid-way because llama3-8b-8192 was decommissioned. Set up Resend transactional email — sends audit report to user's email after lead capture. Fixed Resend free tier limitation by routing to verified email via RESEND_TO_EMAIL env variable. Wrote 7 audit engine unit tests covering downgrade recommendations, overpaying detection, API spend flagging, keep actions, and total savings calculation — all 7 passing. Fixed jest config by switching from jest.config.ts to jest.config.js to avoid ts-node dependency in CI. Deployed to Vercel at https://stacklens-henna.vercel.app with all environment variables configured. Added PRICING_DATA.md with sources for all 8 tools and PROMPTS.md documenting the AI summary prompt and reasoning.
+
+**What I learned:**
+Groq decommissions models without much warning — always check the deprecations page. Resend free tier restricts sending to unverified emails until you add a domain — need to handle this gracefully in production. Jest config must be .js not .ts unless ts-node is installed as a dependency.
+
+**Blockers / what I'm stuck on:**
+Resend domain verification needed for sending to arbitrary emails — currently routing to verified address as workaround. Will need a custom domain for production use.
+
+**Plan for tomorrow:**
+Write all entrepreneurial docs — GTM.md, ECONOMICS.md, LANDING_COPY.md, METRICS.md, USER_INTERVIEWS.md. Also write ARCHITECTURE.md with Mermaid diagram and TESTS.md.
