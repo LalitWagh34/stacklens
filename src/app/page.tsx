@@ -59,14 +59,15 @@ export default function Home() {
 
   // Load from localStorage on mount
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved) {
-      const parsed = JSON.parse(saved)
-      setTools(parsed.tools)
-      setTeamSize(parsed.teamSize)
-      setUseCase(parsed.useCase)
-    }
-  }, [])
+  const saved = localStorage.getItem(STORAGE_KEY)
+  if (saved) {
+    const parsed = JSON.parse(saved)
+    setTools(parsed.tools ?? [{ ...defaultTool }])
+    setTeamSize(parsed.teamSize ?? 1)
+    setUseCase(parsed.useCase ?? 'coding')
+  }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
 
   // Save to localStorage on change
   useEffect(() => {

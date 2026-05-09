@@ -1,5 +1,5 @@
 import { AuditInput, AuditResult, ToolAuditResult, Recommendation, ToolName } from '@/types'
-import { PRICING_DATA, PLAN_MIN_SEATS } from './pricing-data'
+import { PRICING_DATA } from './pricing-data'
 
 function getOfficialPricePerSeat(tool: ToolName, plan: string): number {
   const toolData = PRICING_DATA[tool] as Record<string, { pricePerSeat: number }>
