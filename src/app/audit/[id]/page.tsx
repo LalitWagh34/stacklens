@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Zap, TrendingDown, ArrowRight, CheckCircle } from 'lucide-react'
 import { ToolAuditResult } from '@/types'
 import LeadCaptureForm from '@/components/LeadCaptureForm'
-
+import AuditSummary from '@/components/AuditSummary'
 interface Props {
   params: Promise<{ id: string }>
 }
@@ -88,6 +88,7 @@ export default async function AuditPage({ params }: Props) {
 
         {/* Credex CTA for high savings */}
         {/* Credex CTA for high savings */}
+          <AuditSummary auditData={data} />
         {isHighSavings && (
           <Card className="bg-emerald-950 border-emerald-800 mb-8">
             <CardContent className="py-6 flex items-center justify-between">
