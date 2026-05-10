@@ -25,11 +25,11 @@ const TOOLS: { value: ToolName; label: string }[] = [
 const PLANS: Record<ToolName, string[]> = {
   cursor: ['Hobby', 'Pro', 'Business', 'Enterprise'],
   'github-copilot': ['Individual', 'Business', 'Enterprise'],
-  claude: ['Free', 'Pro', 'Max', 'Team', 'Enterprise'],
-  chatgpt: ['Free', 'Plus', 'Team', 'Enterprise'],
+  claude: ['Free', 'Pro', 'Max', 'Team', 'Enterprise', 'API Direct'],
+  chatgpt: ['Free', 'Plus', 'Team', 'Enterprise', 'API Direct'],
   'anthropic-api': ['Pay as you go'],
   'openai-api': ['Pay as you go'],
-  gemini: ['Free', 'Pro', 'Ultra'],
+  gemini: ['Free', 'Pro', 'Ultra', 'API'],
   windsurf: ['Free', 'Pro', 'Team', 'Enterprise'],
 }
 

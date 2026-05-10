@@ -211,7 +211,7 @@ function auditTool(
     action: 'keep',
     description: 'Your current plan looks well-optimized',
     monthlySavings: 0,
-    reason: `${tool} ${plan} is appropriately sized for your team of ${teamSize} with a ${useCase} use case.`,
+    reason:`Your current plan is appropriately sized for your team of ${teamSize} with a ${useCase} use case.`,
   }
 }
 
