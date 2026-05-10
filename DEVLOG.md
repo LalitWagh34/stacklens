@@ -49,3 +49,19 @@ Resend domain verification needed for sending to arbitrary emails — currently 
 
 **Plan for tomorrow:**
 Write all entrepreneurial docs — GTM.md, ECONOMICS.md, LANDING_COPY.md, METRICS.md, USER_INTERVIEWS.md. Also write ARCHITECTURE.md with Mermaid diagram and TESTS.md.
+
+## Day 4 — 2026-05-10
+
+**Hours worked:** 6
+
+**What I did:**
+Wrote all entrepreneurial and engineering documentation files. Completed USER_INTERVIEWS.md with 3 real interviews conducted with developers in my network — key insight was that the real decision-maker is the engineering manager, not the individual developer, which influenced the shareable URL design. Wrote ARCHITECTURE.md with full Mermaid system diagram, data flow explanation, stack justification, and scaling plan for 10k audits/day. Wrote GTM.md with specific target user profile, exact online communities, 30-day zero-budget acquisition plan, and Credex's unfair distribution channel via existing customer base. Wrote ECONOMICS.md with full unit economics — LTV estimate, CAC per channel, conversion funnel math, and path to $1M ARR in 18 months with month-by-month model. Wrote LANDING_COPY.md with hero headline, subheadline, CTA, mocked social proof block, and 5 real FAQs. Wrote METRICS.md with North Star metric (audits completed per week), 3 input metrics, instrumentation plan, and pivot trigger numbers. Wrote REFLECTION.md answering all 5 questions with specific debugging stories, reversed decisions, and honest self-ratings. Wrote TESTS.md documenting all 7 audit engine tests. Fixed missing API Direct plans for Claude and ChatGPT, and added Gemini API plan to the spend input form.
+
+**What I learned:**
+Writing the ECONOMICS.md forced me to think through the full conversion funnel mathematically — the tool self-qualifies leads by only showing the Credex CTA for >$500 savings, which means consultation bookings are high-intent by design. The GTM unfair channel insight — Credex emailing existing customers — is something no competitor can replicate.
+
+**Blockers / what I'm stuck on:**
+Lighthouse scores not checked yet — this could surface accessibility or performance issues that need fixing tomorrow. Resend free tier only sends emails to the verified account email, not to the actual user's email address entered in the lead capture form. Fix is to use Resend's shared sending domain `onboarding@resend.dev` and remove the `RESEND_TO_EMAIL` environment variable override — will fix tomorrow.
+
+**Plan for tomorrow:**
+Add share button to results page, fix tool name capitalization in audit output, run Lighthouse on live Vercel URL and fix any scores below 85/90/90, full end-to-end test on deployed URL.
