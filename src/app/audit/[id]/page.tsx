@@ -6,17 +6,9 @@ import { Zap, TrendingDown, ArrowRight, CheckCircle } from 'lucide-react'
 import { ToolAuditResult } from '@/types'
 import dynamic from 'next/dynamic'
 
-const LeadCaptureForm = dynamic(() => import('@/components/LeadCaptureForm'), {
-  ssr: false,
-})
-
-const AuditSummary = dynamic(() => import('@/components/AuditSummary'), {
-  ssr: false,
-})
-
-const ShareButton = dynamic(() => import('@/components/ShareButton'), {
-  ssr: false,
-})
+const LeadCaptureForm = dynamic(() => import('@/components/LeadCaptureForm'))
+const AuditSummary = dynamic(() => import('@/components/AuditSummary'))
+const ShareButton = dynamic(() => import('@/components/ShareButton'))
 
 interface Props {
   params: Promise<{ id: string }>
