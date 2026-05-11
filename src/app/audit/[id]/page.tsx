@@ -6,9 +6,15 @@ import { Zap, TrendingDown, ArrowRight, CheckCircle } from 'lucide-react'
 import { ToolAuditResult } from '@/types'
 import LeadCaptureForm from '@/components/LeadCaptureForm'
 import AuditSummary from '@/components/AuditSummary'
+import ShareButton from '@/components/ShareButton'
+
 interface Props {
   params: Promise<{ id: string }>
 }
+
+
+
+
 
 const TOOL_LABELS: Record<string, string> = {
   cursor: 'Cursor',
@@ -35,6 +41,19 @@ const ACTION_LABELS: Record<string, string> = {
   keep: '✓ Optimal',
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params
+  const { data } = await supabase.from('audits').select('total_monthly_savings').eq('id', id).single()
+  const savings = data?.total_monthly_savings ?? 0
+  const title = savings > 0 ? `I found $${savings}/mo in AI savings — StackLens` : 'My AI Spend Audit — StackLens'
+  const url = `${process.env.NEXT_PUBLIC_APP_URL}/audit/${id}`
+  return {
+    title,
+    openGraph: { title, url, siteName: 'StackLens' },
+    twitter: { card: 'summary', title },
+  }
+}
+
 export default async function AuditPage({ params }: Props) {
   const { id } = await params
 
@@ -51,6 +70,8 @@ export default async function AuditPage({ params }: Props) {
   const totalAnnualSavings = data.total_annual_savings
   const isHighSavings = totalMonthlySavings > 500
   const isOptimal = totalMonthlySavings < 100
+
+  
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
@@ -85,6 +106,11 @@ export default async function AuditPage({ params }: Props) {
             )}
           </CardContent>
         </Card>
+        {/* Share */}
+        <div className="flex items-center justify-between mb-8">
+          <p className="text-slate-400 text-sm">Share your audit</p>
+          <ShareButton auditId={id} monthlySavings={totalMonthlySavings} />
+        </div>
 
         {/* Credex CTA for high savings */}
         {/* Credex CTA for high savings */}
