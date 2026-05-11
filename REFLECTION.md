@@ -72,6 +72,18 @@ Always verify against the official deprecations and recommendations page
 before shipping. Add a comment in the code noting when the model was
 chosen and where to check for updates.
 
+A second reversal happened with the email delivery approach. I initially used 
+Resend's `RESEND_TO_EMAIL` environment variable to route all emails to my 
+verified address as a workaround for the free tier limitation. Mid-week I 
+reversed this and switched to `onboarding@resend.dev` as the sending domain, 
+which I assumed would allow sending to any address. It turned out Resend's 
+free tier still restricts delivery to the account owner's verified email 
+regardless of the sending domain. The full email infrastructure is correctly 
+built — HTML template, audit data integration, high-savings Credex CTA — but 
+production deployment requires purchasing a custom domain and verifying it 
+with Resend. This is an infrastructure cost decision, not a missing feature. 
+I documented this limitation honestly rather than pretending it works end-to-end.
+
 ---
 
 ## 3. What I Would Build in Week 2
