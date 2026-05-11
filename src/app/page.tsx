@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge'
 import { PlusCircle, Trash2, Zap } from 'lucide-react'
 import { AuditInput, ToolInput, ToolName, UseCase } from '@/types'
+import dynamic from 'next/dynamic'
 
 const TOOLS: { value: ToolName; label: string }[] = [
   { value: 'cursor', label: 'Cursor' },
