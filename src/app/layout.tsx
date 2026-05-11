@@ -5,13 +5,11 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -20,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "StackLens — Free AI Spend Audit",
     description: "Find out exactly where your team is overspending on AI tools in 2 minutes.",
-    url: "https://stacklens.vercel.app",
+    url: "https://stacklens-henna.vercel.app",
     siteName: "StackLens",
     type: "website",
   },
@@ -38,9 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

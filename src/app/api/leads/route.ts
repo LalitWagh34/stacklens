@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     // Send confirmation email
     await resend.emails.send({
       from: 'StackLens <onboarding@resend.dev>',
-      to: process.env.RESEND_TO_EMAIL || email,
+      to:  email,
       subject: `Your StackLens Audit — $${monthlySavings}/mo in savings identified`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px;">
