@@ -65,3 +65,48 @@ Lighthouse scores not checked yet — this could surface accessibility or perfor
 
 **Plan for tomorrow:**
 Add share button to results page, fix tool name capitalization in audit output, run Lighthouse on live Vercel URL and fix any scores below 85/90/90, full end-to-end test on deployed URL.
+
+## Day 5 — 2026-05-11
+
+**Hours worked:** 8
+
+**What I did:**
+Fixed Resend email route — was calling req.json() twice which caused the second
+call to fail silently, breaking email delivery entirely. Fixed by parsing the body
+once and destructuring all fields including the honeypot field. Added dynamic
+imports for LeadCaptureForm, AuditSummary, and ShareButton components in the
+audit results page to reduce bundle size. Ran Lighthouse on live Vercel URL in
+incognito mode — initial scores were Performance 59, Accessibility 82. Fixed
+accessibility by adding htmlFor and id attributes to all form inputs and
+aria-labels to all interactive elements. Fixed performance by adding
+optimizePackageImports in next.config.ts. Fixed SEO score (was 60) by adding
+X-Robots-Tag header to prevent Vercel blocking indexing. Fixed hydration mismatch
+caused by accidentally pasting layout.tsx content into page.tsx — spent ~1 hour
+debugging a white screen before identifying the root cause. Final Lighthouse
+scores on homepage in incognito: Performance 97, Accessibility 95, Best
+Practices 100, SEO 100 — all passing assignment requirements. Discovered Resend
+free tier limitation — emails only deliver to verified account owner email
+regardless of sending domain. Full email infrastructure is built and working,
+production fix requires custom domain purchase and verification.
+
+**What I learned:**
+Next.js Server Components don't allow ssr:false in dynamic imports. Vercel adds
+noindex headers by default on deployments which kills SEO score — fixed with
+X-Robots-Tag response header. Lighthouse scores vary massively between regular
+Chrome with extensions (59) and incognito mode (97) — always test in incognito.
+Resend free tier restricts delivery to account owner email even when using
+onboarding@resend.dev as the sending domain — domain verification is required
+for arbitrary recipient emails.
+
+**Blockers / what I'm stuck on:**
+Resend free tier only sends emails to the verified account owner email
+(waghlalit63@gmail.com), not to arbitrary user emails. The full email
+infrastructure is built and working — HTML template, audit data integration,
+Credex CTA for high-savings cases. The only missing piece is domain verification
+which requires purchasing a custom domain. This is an infrastructure cost
+decision, not a code problem. Production fix: buy stacklens.app, verify with
+Resend, update the from address.
+
+**Plan for tomorrow:**
+Write DEVLOG Day 6 and Day 7 entries, verify 5+ distinct commit days with git
+log command, do final end-to-end test on live Vercel URL, and submit Google Form.
