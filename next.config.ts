@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-select', '@radix-ui/react-label'],
+  },
+  compress: true,
 };
 
 export default nextConfig;

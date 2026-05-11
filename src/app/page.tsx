@@ -57,19 +57,17 @@ export default function Home() {
   const [useCase, setUseCase] = useState<UseCase>('coding')
   const [loading, setLoading] = useState(false)
 
-  // Load from localStorage on mount
   useEffect(() => {
-  const saved = localStorage.getItem(STORAGE_KEY)
-  if (saved) {
-    const parsed = JSON.parse(saved)
-    setTools(parsed.tools ?? [{ ...defaultTool }])
-    setTeamSize(parsed.teamSize ?? 1)
-    setUseCase(parsed.useCase ?? 'coding')
-  }
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [])
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      setTools(parsed.tools ?? [{ ...defaultTool }])
+      setTeamSize(parsed.teamSize ?? 1)
+      setUseCase(parsed.useCase ?? 'coding')
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  // Save to localStorage on change
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ tools, teamSize, useCase }))
   }, [tools, teamSize, useCase])
@@ -120,7 +118,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="w-8 h-8 text-emerald-400" />
+            <Zap className="w-8 h-8 text-emerald-400" aria-hidden="true" />
             <h1 className="text-4xl font-bold text-white">StackLens</h1>
           </div>
           <p className="text-slate-400 text-lg">
@@ -139,19 +137,25 @@ export default function Home() {
             {/* Team info */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label className="text-slate-300">Team Size</Label>
+                <Label htmlFor="team-size" className="text-slate-300">Team Size</Label>
                 <Input
+                  id="team-size"
                   type="number"
                   min={1}
                   value={teamSize}
                   onChange={(e) => setTeamSize(Number(e.target.value))}
                   className="bg-slate-800 border-slate-700 text-white"
+                  aria-label="Team size"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-300">Primary Use Case</Label>
+                <Label htmlFor="use-case" className="text-slate-300">Primary Use Case</Label>
                 <Select value={useCase} onValueChange={(v) => setUseCase(v as UseCase)}>
-                  <SelectTrigger className="bg-slate-800 border-slate-700 text-white">
+                  <SelectTrigger
+                    id="use-case"
+                    className="bg-slate-800 border-slate-700 text-white"
+                    aria-label="Primary use case"
+                  >
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -169,9 +173,16 @@ export default function Home() {
                 {tools.map((tool, index) => (
                   <div key={index} className="grid grid-cols-12 gap-2 items-end">
                     <div className="col-span-3 space-y-1">
-                      <Label className="text-slate-400 text-xs">Tool</Label>
-                      <Select value={tool.tool} onValueChange={(v) => updateTool(index, 'tool', v)}>
-                        <SelectTrigger className="bg-slate-800 border-slate-700 text-white">
+                      <Label htmlFor={`tool-${index}`} className="text-slate-400 text-xs">Tool</Label>
+                      <Select
+                        value={tool.tool}
+                        onValueChange={(v) => updateTool(index, 'tool', v)}
+                      >
+                        <SelectTrigger
+                          id={`tool-${index}`}
+                          className="bg-slate-800 border-slate-700 text-white"
+                          aria-label={`Tool ${index + 1}`}
+                        >
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -182,9 +193,16 @@ export default function Home() {
                       </Select>
                     </div>
                     <div className="col-span-3 space-y-1">
-                      <Label className="text-slate-400 text-xs">Plan</Label>
-                      <Select value={tool.plan} onValueChange={(v) => updateTool(index, 'plan', v)}>
-                        <SelectTrigger className="bg-slate-800 border-slate-700 text-white">
+                      <Label htmlFor={`plan-${index}`} className="text-slate-400 text-xs">Plan</Label>
+                      <Select
+                        value={tool.plan}
+                        onValueChange={(v) => updateTool(index, 'plan', v)}
+                      >
+                        <SelectTrigger
+                          id={`plan-${index}`}
+                          className="bg-slate-800 border-slate-700 text-white"
+                          aria-label={`Plan for tool ${index + 1}`}
+                        >
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -195,23 +213,27 @@ export default function Home() {
                       </Select>
                     </div>
                     <div className="col-span-2 space-y-1">
-                      <Label className="text-slate-400 text-xs">$/month</Label>
+                      <Label htmlFor={`spend-${index}`} className="text-slate-400 text-xs">$/month</Label>
                       <Input
+                        id={`spend-${index}`}
                         type="number"
                         min={0}
                         value={tool.monthlySpend}
                         onChange={(e) => updateTool(index, 'monthlySpend', Number(e.target.value))}
                         className="bg-slate-800 border-slate-700 text-white"
+                        aria-label={`Monthly spend for tool ${index + 1}`}
                       />
                     </div>
                     <div className="col-span-2 space-y-1">
-                      <Label className="text-slate-400 text-xs">Seats</Label>
+                      <Label htmlFor={`seats-${index}`} className="text-slate-400 text-xs">Seats</Label>
                       <Input
+                        id={`seats-${index}`}
                         type="number"
                         min={1}
                         value={tool.seats}
                         onChange={(e) => updateTool(index, 'seats', Number(e.target.value))}
                         className="bg-slate-800 border-slate-700 text-white"
+                        aria-label={`Number of seats for tool ${index + 1}`}
                       />
                     </div>
                     <div className="col-span-2">
@@ -221,8 +243,9 @@ export default function Home() {
                         onClick={() => removeTool(index)}
                         disabled={tools.length === 1}
                         className="text-slate-400 hover:text-red-400"
+                        aria-label={`Remove tool ${index + 1}`}
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-4 h-4" aria-hidden="true" />
                       </Button>
                     </div>
                   </div>
@@ -233,8 +256,9 @@ export default function Home() {
                 variant="outline"
                 onClick={addTool}
                 className="mt-4 border-slate-700 text-slate-300 hover:bg-slate-800"
+                aria-label="Add another tool"
               >
-                <PlusCircle className="w-4 h-4 mr-2" />
+                <PlusCircle className="w-4 h-4 mr-2" aria-hidden="true" />
                 Add another tool
               </Button>
             </div>
@@ -243,6 +267,7 @@ export default function Home() {
               onClick={handleSubmit}
               disabled={loading}
               className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold py-6 text-lg"
+              aria-label="Run free audit"
             >
               {loading ? 'Analyzing your stack...' : 'Run Free Audit →'}
             </Button>
