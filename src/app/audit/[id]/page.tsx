@@ -54,6 +54,13 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
+// Add this helper at the top of page.tsx
+function formatPlan(plan: string) {
+  return plan
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
 export default async function AuditPage({ params }: Props) {
   const { id } = await params
 
@@ -142,7 +149,8 @@ export default async function AuditPage({ params }: Props) {
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-white text-base">
-                    {TOOL_LABELS[result.tool] || result.tool} — {result.plan}
+                    {TOOL_LABELS[result.tool] || result.tool} — {formatPlan(result.plan)}
+
                   </CardTitle>
                   <Badge className={ACTION_COLORS[result.recommendation.action]}>
                     {ACTION_LABELS[result.recommendation.action]}

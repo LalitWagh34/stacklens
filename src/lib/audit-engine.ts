@@ -16,8 +16,10 @@ function auditTool(
   teamSize: number,
   useCase: string
 ): Recommendation {
+  plan = plan.toLowerCase().replace(/\s+/g, '-')
   const officialPrice = getOfficialPricePerSeat(tool, plan) * seats
   const overpaying = monthlySpend > officialPrice * 1.1
+  
 
   // --- CURSOR ---
   if (tool === 'cursor') {
