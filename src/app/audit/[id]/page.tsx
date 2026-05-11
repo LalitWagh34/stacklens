@@ -4,9 +4,19 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Zap, TrendingDown, ArrowRight, CheckCircle } from 'lucide-react'
 import { ToolAuditResult } from '@/types'
-import LeadCaptureForm from '@/components/LeadCaptureForm'
-import AuditSummary from '@/components/AuditSummary'
-import ShareButton from '@/components/ShareButton'
+import dynamic from 'next/dynamic'
+
+const LeadCaptureForm = dynamic(() => import('@/components/LeadCaptureForm'), {
+  ssr: false,
+})
+
+const AuditSummary = dynamic(() => import('@/components/AuditSummary'), {
+  ssr: false,
+})
+
+const ShareButton = dynamic(() => import('@/components/ShareButton'), {
+  ssr: false,
+})
 
 interface Props {
   params: Promise<{ id: string }>
