@@ -151,8 +151,8 @@ is a new acquisition channel.
   what actually changed, not generated.
 
 **One specific time the AI was wrong and I caught it:**
-Claude suggested using `llama3-8b-8192` as the Groq model in the summary
-API route. It presented this confidently as the current recommended model.
+I initially chose `llama3-8b-8192` based on Groq's documentation examples,
+and when I asked Claude to confirm, it agreed this was the right model.
 It was wrong — the model had been decommissioned. I only caught it
 because the API threw a hard error in production. If I had used AI-suggested
 pricing data the same way, I would have shipped wrong numbers that
@@ -174,7 +174,7 @@ the AuditSummary component uses `any` type for the audit data prop which
 is a shortcut I'd fix in a real codebase. Test coverage is good for the
 audit engine but zero for UI components and API routes.
 
-**Design sense: 6/10**
+**Design sense: 7/10**
 The dark theme with emerald green accents is clean and consistent.
 The results page hierarchy is clear — big savings number at the top,
 breakdown below, lead capture at the bottom. Weak points: mobile
