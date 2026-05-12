@@ -25,18 +25,19 @@ export async function POST(req: NextRequest) {
       .map(r => `${r.tool} (${r.plan}): ${r.recommendation.description} — saves $${r.recommendation.monthlySavings}/mo`)
       .join('\n')
 
-    const prompt = `You are an AI spend analyst. Write a 80-100 word personalized audit summary for a team.
+   const prompt = `You are an AI spend analyst. Write a 80-100 word personalized audit summary for a team.
 
-Team details:
-- Team size: ${audit.input.teamSize}
-- Primary use case: ${audit.input.useCase}
-- Tools audited: ${audit.input.tools.length}
-- Total monthly savings identified: $${audit.totalMonthlySavings}
+    Team details:
+    - Team size: ${audit.input.teamSize}
+    - Primary use case: ${audit.input.useCase}
+    - Tools audited: ${audit.input.tools.length}
+    - Total monthly savings identified: $${audit.totalMonthlySavings}
 
-Top recommendations:
-${topSavings || 'Stack is well optimized'}
+    Top recommendations:
+    ${topSavings || 'Stack is well optimized'}
 
-Write a concise, specific, professional summary. Mention the biggest saving opportunity by name. End with one actionable next step. Do not use bullet points. Plain paragraph only.`
+    Write a concise, specific, professional summary. Mention the biggest saving opportunity by name. End with one actionable next step. Do not use bullet points. Plain paragraph only.
+    Always capitalize tool names correctly: Cursor, GitHub Copilot, Claude, ChatGPT, Gemini, Windsurf, OpenAI API, Anthropic API.`
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
