@@ -110,3 +110,15 @@ Resend, update the from address.
 **Plan for tomorrow:**
 Write DEVLOG Day 6 and Day 7 entries, verify 5+ distinct commit days with git
 log command, do final end-to-end test on live Vercel URL, and submit Google Form.
+
+## Day 6 — 2026-05-12
+
+**Hours worked:** X
+
+**What I did:** Fixed Lighthouse scores (Performance, Accessibility), added share button to results page, fixed OG metadata, fixed NEXT_PUBLIC_APP_URL env var in Vercel, fixed tool plan name capitalization in audit output, deleted RESEND_TO_EMAIL override.
+
+**What I learned:** ...
+
+**Blockers / what I'm stuck on:** ...
+
+**Plan for tomorrow:** Final end-to-end test, submission form fill, final commit push.
