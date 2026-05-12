@@ -5,7 +5,7 @@ Each interview was 10–15 minutes via chat/call.
 
 ---
 
-## Interview 1 — SA, Student Developer, College Project Stage
+## Interview 1 — Sanchet Atkari, Student Developer, College Project Stage
 
 **Date:** 2026-05-09
 **Duration:** 12 minutes
@@ -33,7 +33,7 @@ showing savings numbers.
 
 ---
 
-## Interview 2 — NM, Software Engineer, Early-Stage Company (25-30 person dev team)
+## Interview 2 — Nitesh Mourya, Software Engineer, Early-Stage Company (25-30 person dev team)
 
 **Date:** 2026-05-09
 **Duration:** 13 minutes
@@ -61,7 +61,7 @@ for a manager reading it, not just the person who ran the audit.
 
 ---
 
-## Interview 3 — MZ, Senior Developer / System Design Enthusiast, Project Teams
+## Interview 3 — Muiz Zatam, Senior Developer / System Design Enthusiast, Project Teams
 
 **Date:** 2026-05-09
 **Duration:** 15 minutes
